@@ -1,4 +1,4 @@
-##pinyin-firstLetter-group##
+# pinyin-firstLetter-group
 
 以首字母分组传入的文字数组
 
