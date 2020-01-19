@@ -16,7 +16,7 @@ function pinyin_firstLetter_group(words,getProp=item=>item,notEmpty=false){
     var i = 0;
     var mark = "         !";
     var transform_mark = mark.replace("!"," ");
-    var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ*".split('');
+    var letters = "abcdefghjklmnopqrstwxyz*".split('');
     var current_letter = letters[letters.length-1];
     var zhs = "阿八嚓哒妸发旮哈讥咔垃妈拏噢妑七呥扨它穵夕丫帀咗".split('');
     var zh_letter_map = zhs.reduce(function(result,zh,idx){
@@ -72,5 +72,9 @@ function pinyin_firstLetter_group(words,getProp=item=>item,notEmpty=false){
             }
         }
     }
+    result = Object.keys(result).reduce((acc,key)=>{
+        acc[key.toLocaleUpperCase()] = result[key];
+        return acc;
+    },{})
     return result;
 }

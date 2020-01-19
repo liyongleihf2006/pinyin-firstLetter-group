@@ -21,7 +21,7 @@
         'username':'tiantian'
     }];
     pinyin_firstLetter_group(data,function(item){return item.name},true)//第三个参数true的时候把空组去掉
-    //{"C":[{"name":"测试号","username":"ceshihao"},{"name":"沉鱼落雁","username":"chenzy"},{"name":"沉鱼落雁","username":"chenzy2"}],"S":[{"name":"田田","username":"tiantian"}]}
+    //{"C":[{"name":"测试号","username":"ceshihao"},{"name":"沉鱼落雁","username":"chenzy"},{"name":"沉鱼落雁","username":"chenzy2"}],"T":[{"name":"田田","username":"tiantian"}]}
 ```
 
 [simple](https://liyongleihf2006.github.io/pinyin-firstLetter-group/)
