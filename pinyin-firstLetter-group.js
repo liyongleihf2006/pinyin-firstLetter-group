@@ -2,12 +2,21 @@
  * Created by liyongleihf2006 on 2018/01/26
  * 以首字母分组传入的文字数组 
  * @param {*} words 文字数组
+ * @param {function} getProp 返回数组中每一项用来分组的属性,默认是每一项本身
+ * @param {boolean} notEmpty 是否将空的去除掉,默认不去除
  */
-function pinyin_firstLetter_group(words){
+function pinyin_firstLetter_group(words,getProp=item=>item,notEmpty=false){
+    var originWords = words;
+    words = [...new Set(words.map(getProp))];
+    var wordsMap = originWords.reduce((acc,originWord)=>{
+        var word = getProp(originWord);
+        acc[word]?acc[word].push(originWord):acc[word] = [originWord];
+        return acc;
+    },{})
     var i = 0;
     var mark = "         !";
     var transform_mark = mark.replace("!"," ");
-    var letters = "abcdefghjklmnopqrstwxyz*".split('');
+    var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ*".split('');
     var current_letter = letters[letters.length-1];
     var zhs = "阿八嚓哒妸发旮哈讥咔垃妈拏噢妑七呥扨它穵夕丫帀咗".split('');
     var zh_letter_map = zhs.reduce(function(result,zh,idx){
@@ -41,7 +50,6 @@ function pinyin_firstLetter_group(words){
         }else{
             result[current_letter].push(current);
         }
-        return result;
     });
     Object.keys(result).forEach(function(key){
         result[key]=result[key].map(function(word){
@@ -50,5 +58,19 @@ function pinyin_firstLetter_group(words){
             return word.replace(prefix_reg,"").replace(suffix_reg,"");
         });
     });
+    Object.keys(result).forEach(key=>{
+        var values = result[key];
+        values = values.map(value=>wordsMap[value]).flat(1);
+        result[key] = values;
+    })
+    if(notEmpty){
+        let keys = Object.keys(result);
+        for(var i = keys.length - 1;i>=0;i--){
+            var key = keys[i];
+            if(!result[key].length){
+                delete result[key];
+            }
+        }
+    }
     return result;
 }

@@ -8,7 +8,21 @@
 </head>
 <body>
     <script>
-        console.log(JSON.stringify(pinyin_firstLetter_group(['阿','八','白鸽', '麻雀', '大象', '狗', '猫', "鸡","狗","人员","鸡","李明","d","DDD","！","a","b哈","ccc",""])));
+        var data = [{
+            'name':'沉鱼落雁',
+            'username':'chenzy'
+        },{
+            'name':'沉鱼落雁',
+            'username':'chenzy2'
+        },{
+            'name':'测试号',
+            'username':'ceshihao'
+        },{
+            'name':'田田',
+            'username':'tiantian'
+        }];
+        console.log(JSON.stringify(pinyin_firstLetter_group(data,function(item){return item.name},true)));
+        console.log(JSON.stringify(pinyin_firstLetter_group(['阿','阿','八','白鸽', '麻雀', '大象', '狗', '猫', "鸡","狗","人员","鸡","李明","d","DDD","！","a","b哈","ccc",""])));
     </script>
 </body>
 </html>
